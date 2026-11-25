@@ -38,6 +38,8 @@ y = data["Species"]
 
 x = data.drop("Species", axis = 1)
 
+x = x.drop("Id", axis = 1)
+
 print(x.head())
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 1)
@@ -50,7 +52,7 @@ print(y_test.shape)
 model = DecisionTreeClassifier(max_depth = 3, random_state = 1)
 model.fit(x_train, y_train)
 
-answers = model.predict(x_test)
+answers = model.predict( np.array([7.2,	2.8, 6.1, 2]).reshape(1, -1) )
+print(answers)
 
-print("accuracy", metrics.accuracy_score(answers, y_test))
-
+#print("accuracy", metrics.accuracy_score(answers, y_test))
